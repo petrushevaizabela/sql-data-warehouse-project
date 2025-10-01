@@ -69,7 +69,7 @@ ON pn.cat_id = pc.id
 WHERE  prd_end_dt IS NULL --Filter out all historical data
 
 -- =========================================================================
--- Create Dimension: gold.fact_sales
+-- Create Fact: gold.fact_sales
 -- =========================================================================
 
 IF OBJECT_ID('gold.fact_sales', 'V') IS NOT NULL
