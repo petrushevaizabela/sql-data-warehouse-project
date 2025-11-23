@@ -14,7 +14,6 @@ SELECT
 FROM gold.dim_products
 )
 
--- Baraa code
 SELECT
 	cost_range,
 	COUNT(product_key) AS total_products
@@ -29,8 +28,6 @@ ORDER BY total_products DESC
 And find the total number of custmers by each group.
 */
 
--- Baraa code
-
 WITH customer_spending AS (
 SELECT
 	c.customer_key,
@@ -43,19 +40,6 @@ LEFT JOIN gold.dim_customers AS c
 ON f.customer_key = c.customer_key
 GROUP BY c.customer_key
 )
-
--- Displaying customers and their status
-/*
-SELECT
-	customer_key,
-	total_spending,
-	lifespan,
-	CASE WHEN lifespan >= 12 AND total_spending > 5000 THEN 'VIP'
-		WHEN lifespan >= 12 AND total_spending < 5000 THEN 'Regular'
-		ELSE 'New'
-	END customer_segment
-FROM customer_spending
-*/
 
 -- Creating new dimension by segmentation
 
