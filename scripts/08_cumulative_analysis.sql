@@ -3,8 +3,6 @@
 -- Calculate the total sales per month 
 -- and the running total of sales over time.
 
--- Baraa code
-
 SELECT
 	order_date,
 	total_sales,
@@ -20,21 +18,3 @@ SELECT
 		GROUP BY DATETRUNC(month, order_date)
 		)t
 
--- My code
---Total sales
-
-SELECT DISTINCT
-	DATETRUNC(month, order_date) AS month_order,
-	SUM(sales_amount) OVER (PARTITION BY DATETRUNC(month, order_date)) sales_by_month
-FROM gold.fact_sales
-WHERE order_date IS NOT NULL
-ORDER BY DATETRUNC(month, order_date)
-
--- Running total
-
-SELECT DISTINCT
-	DATETRUNC(month, order_date) AS month_order,
-	SUM(sales_amount) OVER (ORDER BY DATETRUNC(month, order_date)) sales_over_time
-FROM gold.fact_sales
-WHERE order_date IS NOT NULL
-ORDER BY DATETRUNC(month, order_date)
